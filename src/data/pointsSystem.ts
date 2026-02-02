@@ -101,14 +101,14 @@ export const POINTS_SYSTEM: PointsConfig[] = [
 export const COMPETITION_LEVELS = [
   { value: "school", label: "School Level", codes: ["A1", "A2", "A3", "A4", "A5"] },
   { value: "university", label: "University Level", codes: ["B1", "B2", "B3", "B4", "B5"] },
-  { value: "private-university", label: "Off Campus - Private Universities", codes: ["C1", "C2", "C3", "C4", "C5"] },
-  { value: "premier-institute", label: "Off Campus - Institute of Premier", codes: ["D1", "D2", "D3", "D4", "D5"] },
-  { value: "open-national", label: "Off Campus - Open National Competitions (SIE etc)", codes: ["E1", "E2", "E3", "E4", "E5"] },
-  { value: "open-international", label: "Off Campus - Open International Competitions", codes: ["EI1", "EI2", "EI3", "EI4", "EI5"] },
-  { value: "govt-state", label: "Off Campus - Govt. State Agencies", codes: ["F1", "F2", "F3", "F4", "F5"] },
-  { value: "govt-national", label: "Off Campus - National Govt Agencies/Organisations", codes: ["G1, GF1", "G2, GF2", "G3, GF3", "G4, GF4", "G5, GF5"] },
-  { value: "mentored-projects", label: "Off Campus - Mentored Projects", codes: ["HZ1, HN1", "HZ2, HN2", "HZ3, HN3", "HZ4, HN4", "HZ5, HN5"] },
-  { value: "international-platform", label: "International Competition at International Platform", codes: ["I1, IF1", "I2, IF2", "I3, IF3", "I4, IF4", "I5, IF5"] },
+  { value: "private-university", label: "Private Universities", codes: ["C1", "C2", "C3", "C4", "C5"] },
+  { value: "premier-institute", label: "Institute of Premier", codes: ["D1", "D2", "D3", "D4", "D5"] },
+  { value: "open-national", label: "Open National (SIE etc)", codes: ["E1", "E2", "E3", "E4", "E5"] },
+  { value: "open-international", label: "Open International", codes: ["EI1", "EI2", "EI3", "EI4", "EI5"] },
+  { value: "govt-state", label: "Govt. State Agencies", codes: ["F1", "F2", "F3", "F4", "F5"] },
+  { value: "govt-national", label: "National Govt Agencies", codes: ["G1, GF1", "G2, GF2", "G3, GF3", "G4, GF4", "G5, GF5"] },
+  { value: "mentored-projects", label: "Mentored Projects", codes: ["HZ1, HN1", "HZ2, HN2", "HZ3, HN3", "HZ4, HN4", "HZ5, HN5"] },
+  { value: "international-platform", label: "International Platform", codes: ["I1, IF1", "I2, IF2", "I3, IF3", "I4, IF4", "I5, IF5"] },
 ];
 
 export const ACHIEVEMENT_RANKS = [
