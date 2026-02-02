@@ -189,23 +189,23 @@ const SportsAchievementForm = () => {
         title: formData.title,
         description: formData.description,
         category: "sports",
-        achievement_date: formData.date,
-        institution: formData.organizer,
-        competition_level: formData.level,
-        position_rank: formData.position,
+        event_type: formData.sportType,
+        date: formData.date,
+        organizer: formData.organizer,
+        level: formData.level,
+        position: formData.position,
         certificate_url: certificateUrl,
-        status: "pending",
-        type: formData.sportType,
-        tags: [formData.sportType, formData.eventCategory, formData.participationType],
         school: formData.school,
         program: formData.program,
-        performance_metrics: formData.performanceMetrics,
+        calculated_points: calculatedPoints,
+        category_code: categoryCode,
+        competition_scope: competitionScope,
+        status: "pending",
       };
 
-      // @ts-ignore - Supabase type generation issue
       const { error } = await supabase
         .from('beyond_academics_achievements')
-        .insert([achievement as any]);
+        .insert([achievement]);
 
       if (error) throw error;
 

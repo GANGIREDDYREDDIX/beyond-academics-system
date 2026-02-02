@@ -6,15 +6,78 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export type Database = {
-  // Allows to automatically instantiate createClient with right options
-  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
-  __InternalSupabase: {
-    PostgrestVersion: "13.0.5"
-  }
+export interface Database {
   public: {
     Tables: {
-      [_ in never]: never
+      beyond_academics_achievements: {
+        Row: {
+          id: string
+          created_at: string
+          user_id: string | null
+          title: string
+          category: string
+          event_type: string | null
+          date: string
+          organizer: string
+          level: string
+          position: string
+          description: string | null
+          certificate_url: string | null
+          school: string
+          program: string
+          calculated_points: number | null
+          category_code: string | null
+          competition_scope: string | null
+          status: string | null
+          reviewed_by: string | null
+          reviewed_at: string | null
+        }
+        Insert: {
+          id?: string
+          created_at?: string
+          user_id?: string | null
+          title: string
+          category: string
+          event_type?: string | null
+          date: string
+          organizer: string
+          level: string
+          position: string
+          description?: string | null
+          certificate_url?: string | null
+          school: string
+          program: string
+          calculated_points?: number | null
+          category_code?: string | null
+          competition_scope?: string | null
+          status?: string | null
+          reviewed_by?: string | null
+          reviewed_at?: string | null
+        }
+        Update: {
+          id?: string
+          created_at?: string
+          user_id?: string | null
+          title?: string
+          category?: string
+          event_type?: string | null
+          date?: string
+          organizer?: string
+          level?: string
+          position?: string
+          description?: string | null
+          certificate_url?: string | null
+          school?: string
+          program?: string
+          calculated_points?: number | null
+          category_code?: string | null
+          competition_scope?: string | null
+          status?: string | null
+          reviewed_by?: string | null
+          reviewed_at?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

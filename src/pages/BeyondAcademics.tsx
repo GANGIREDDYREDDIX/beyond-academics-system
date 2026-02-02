@@ -85,17 +85,17 @@ const BeyondAcademics = () => {
           {
             name: "Hackathons",
             details: "Win or participate in coding hackathons (MLH, DevPost, etc.)",
-            points: "500-2000 points based on rank",
+            points: "3-100 points based on level & rank (Codes: A1-M3)",
           },
           {
             name: "Coding Contests",
             details: "Achievements in competitive programming (CodeChef, Codeforces, LeetCode)",
-            points: "300-1500 points based on rating/rank",
+            points: "3-100 points based on competition level & achievement",
           },
           {
             name: "Research Publications",
             details: "Published papers in conferences or journals",
-            points: "1000-3000 points based on venue tier",
+            points: "3-100 points based on venue category (L1-L4)",
           },
         ],
       },
@@ -119,17 +119,17 @@ const BeyondAcademics = () => {
           {
             name: "Tournaments",
             details: "Inter-college, state, or national level competitions",
-            points: "400-1800 points based on level",
+            points: "3-100 points based on level & rank (Codes: A1-M3)",
           },
           {
             name: "Championships",
             details: "Gold, Silver, Bronze medals in championships",
-            points: "600-2500 points based on medal",
+            points: "3-100 points - Winner/Merit gets highest points",
           },
           {
             name: "Athletic Competitions",
             details: "Track and field, marathons, sports meets",
-            points: "300-1200 points based on rank",
+            points: "3-100 points based on competition scope (Zonal/National)",
           },
         ],
       },
@@ -153,17 +153,17 @@ const BeyondAcademics = () => {
           {
             name: "Music Competitions",
             details: "Solo/group performances, band competitions",
-            points: "350-1500 points based on level",
+            points: "3-100 points based on level & rank (Codes: A1-M3)",
           },
           {
             name: "Dance Performances",
             details: "Classical, contemporary, folk dance competitions",
-            points: "350-1500 points based on level",
+            points: "3-100 points - National events get higher points",
           },
           {
             name: "Art Exhibitions",
             details: "Painting, sculpture, photography exhibitions",
-            points: "400-1600 points based on venue",
+            points: "3-100 points based on venue & achievement level",
           },
         ],
       },
@@ -187,17 +187,17 @@ const BeyondAcademics = () => {
           {
             name: "Student Leadership",
             details: "Club president, council member, team lead positions",
-            points: "400-1500 points based on impact",
+            points: "3-100 points based on level & impact (Codes: A1-M3)",
           },
           {
             name: "Community Service",
             details: "Volunteer work, social initiatives, NGO projects",
-            points: "300-1200 points based on hours/impact",
+            points: "3-100 points - National level gets 2x zonal points",
           },
           {
             name: "Event Organization",
             details: "Successfully organizing technical/cultural/sports events",
-            points: "350-1400 points based on scale",
+            points: "3-100 points based on competition scope & achievement",
           },
         ],
       },

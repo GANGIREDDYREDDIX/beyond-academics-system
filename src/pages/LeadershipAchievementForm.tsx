@@ -184,25 +184,23 @@ const LeadershipAchievementForm = () => {
         title: formData.title,
         description: formData.description,
         category: "leadership",
-        achievement_date: formData.date,
-        institution: formData.organization,
-        competition_level: formData.level,
-        position_rank: formData.roleType,
+        event_type: formData.activityType,
+        date: formData.date,
+        organizer: formData.organization,
+        level: formData.level,
+        position: formData.position,
         certificate_url: certificateUrl,
-        status: "pending",
-        type: formData.activityType,
-        tags: [formData.roleType, formData.activityType],
         school: formData.school,
         program: formData.program,
-        impact: formData.impact,
-        team_size: formData.teamSize ? parseInt(formData.teamSize) : null,
-        duration: formData.duration,
+        calculated_points: calculatedPoints,
+        category_code: categoryCode,
+        competition_scope: competitionScope,
+        status: "pending",
       };
 
-      // @ts-ignore - Supabase type generation issue
       const { error } = await supabase
         .from('beyond_academics_achievements')
-        .insert([achievement as any]);
+        .insert([achievement]);
 
       if (error) throw error;
 
