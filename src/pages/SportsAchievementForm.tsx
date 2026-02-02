@@ -13,7 +13,6 @@ import Header from "@/components/Header";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { v4 as uuidv4 } from 'uuid';
-import { LPU_DATA, getProgramsBySchool } from "@/data/lpuData";
 import { z } from "zod";
 import confetti from "canvas-confetti";
 
@@ -28,8 +27,6 @@ const sportsSchema = z.object({
   eventCategory: z.string().min(1, "Please select event category"),
   participationType: z.string().min(1, "Please select participation type"),
   performanceMetrics: z.string().optional(),
-  school: z.string().min(1, "Please select your school"),
-  program: z.string().min(1, "Please select your program"),
 });
 
 const SportsAchievementForm = () => {
@@ -37,8 +34,6 @@ const SportsAchievementForm = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [selectedSchool, setSelectedSchool] = useState("");
-  const [availablePrograms, setAvailablePrograms] = useState<string[]>([]);
   const [formData, setFormData] = useState({
     title: "",
     sportType: "",
@@ -50,8 +45,6 @@ const SportsAchievementForm = () => {
     eventCategory: "",
     participationType: "",
     performanceMetrics: "",
-    school: "",
-    program: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -98,13 +91,6 @@ const SportsAchievementForm = () => {
       }
     }
   }, [formData.level, formData.position, competitionScope]);
-
-  const handleSchoolChange = (schoolId: string) => {
-    setSelectedSchool(schoolId);
-    const programs = getProgramsBySchool(schoolId);
-    setAvailablePrograms(programs);
-    setFormData({ ...formData, school: schoolId, program: "" });
-  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -184,6 +170,17 @@ const SportsAchievementForm = () => {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error("User not authenticated");
 
+      // Fetch user profile to get school and program
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('school, program')
+        .eq('id', user.id)
+        .single();
+
+      if (profileError || !profile) {
+        throw new Error("Unable to fetch user profile. Please ensure your profile is complete.");
+      }
+
       const achievement = {
         user_id: user.id,
         title: formData.title,
@@ -195,8 +192,8 @@ const SportsAchievementForm = () => {
         level: formData.level,
         position: formData.position,
         certificate_url: certificateUrl,
-        school: formData.school,
-        program: formData.program,
+        school: profile.school,
+        program: profile.program,
         calculated_points: calculatedPoints,
         category_code: categoryCode,
         competition_scope: competitionScope,
@@ -452,51 +449,6 @@ const SportsAchievementForm = () => {
                       />
                       {errors.description && <p className="text-sm text-red-500">{errors.description}</p>}
                       <p className="text-xs text-muted-foreground">{formData.description.length}/1000 characters</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Student Information */}
-                <div className="space-y-6">
-                  <h3 className="text-xl font-bold">Student Information</h3>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="school">School *</Label>
-                      <Select value={formData.school} onValueChange={handleSchoolChange}>
-                        <SelectTrigger className={errors.school ? "border-red-500" : ""}>
-                          <SelectValue placeholder="Select your school" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {LPU_DATA.schools.map((school) => (
-                            <SelectItem key={school.id} value={school.id}>
-                              {school.name}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      {errors.school && <p className="text-sm text-red-500">{errors.school}</p>}
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="program">Program *</Label>
-                      <Select
-                        value={formData.program}
-                        onValueChange={(value) => setFormData({ ...formData, program: value })}
-                        disabled={!selectedSchool}
-                      >
-                        <SelectTrigger className={errors.program ? "border-red-500" : ""}>
-                          <SelectValue placeholder={selectedSchool ? "Select your program" : "Select school first"} />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {availablePrograms.map((program) => (
-                            <SelectItem key={program} value={program}>
-                              {program}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                      {errors.program && <p className="text-sm text-red-500">{errors.program}</p>}
                     </div>
                   </div>
                 </div>
