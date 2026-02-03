@@ -526,6 +526,68 @@
     perspective: 1000px;
   }
 }
+
+@layer utilities {
+  /* Backdrop Blur Utilities */
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
+  }
+
+  .backdrop-blur-soft {
+    backdrop-filter: blur(8px);
+  }
+
+  .backdrop-blur-strong {
+    backdrop-filter: blur(20px);
+  }
+
+  /* Transform Utilities */
+  .transform-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Perspective for 3D effects */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* Text Shadows */
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Gradient Borders */
+  .border-gradient {
+    border-image: var(--gradient-hero) 1;
+  }
+
+  /* Safe Area Padding for Mobile Devices */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Performance Optimization */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
     * {
       border-width: 2px;
     }
@@ -541,9 +603,7 @@
       transition-duration: 0.01ms !important;
     }
   }
-}
 
-@layer utilities {
   /* Custom Gradient Utilities */
   .bg-gradient-hero {
     background: var(--gradient-hero);
