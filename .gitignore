@@ -114,3 +114,6 @@ coverage/
 
 # Misc
 *.tsbuildinfo
+
+# Local Netlify folder
+.netlify
